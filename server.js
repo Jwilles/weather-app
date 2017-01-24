@@ -1,0 +1,21 @@
+// server.js
+
+
+//======================= Setup =======================
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+var port = 3000;
+
+//================== Configuration ====================
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+
+//================== Routes ===========================
+
+
+
+
+app.listen(port, () => {
+	console.log('Server Started');
+});
