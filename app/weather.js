@@ -1,17 +1,20 @@
 var request = require('request');
 //var url = 'http://api.openweathermap.org/data/2.5/weather?q=Ottawa,ca&units=metric&appid=ff062210ba6e38ea7285cc2aa1ede547'; 
-var urlBase = 'http://api.openweathermap.org/data/2.5/weather?q=';
+var urlBase = 'http://api.openweathermap.org/data/2.5/weather?';
 var urlUnitID = '&units=metric&appid=ff062210ba6e38ea7285cc2aa1ede547';
+var urlAppID = process.env.
 
-module.exports = function (location) {
+
+module.exports = function (loc) {
 	
 	return new Promise(function(resolve, reject) {
 		
-		if (!location) {
+		if (!loc) {
 			reject('Unable to request weather');
 		}
-	
-		var url = urlBase + encodeURIComponent(location) +urlUnitID	
+		
+		urlLoc = 'lat=' + loc.lat + '&lon=' + loc.lon	
+		var url = urlBase + urlLoc +urlUnitID	
 		 request({
 			url: url,
        			json: true
@@ -19,8 +22,7 @@ module.exports = function (location) {
 			if (error) {
                 		reject('Unable to fetch weather.');
 			} else {
-        			//console.log(body);
-               			resolve('Its currently ' + body.main.temp + ' degrees in ' + body.name + '.');
+               			resolve(body);
 			}
 		});	
 

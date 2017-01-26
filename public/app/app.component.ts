@@ -5,9 +5,15 @@ import { WeatherService } from './services/weather.service';
 @Component({
 	selector: 'my-app',
 	template: `
-		<div class="jumbotron">
-			<h1>Longitude:  {{geoLoc.longitude}}  Latitude: {{geoLoc.latitude}} Temp: {{weather.temp}}</h1>
+		<header>
+			<div class="page-header">
+				<h2>Welcome to your local weather app!</h2>	
+			</div>
+		</header>
+		<div class="jumbotron" >
+			<h3 class="text-center">Your local temperature is: {{weather.temp}} degrees!</h3>
 		</div>
+		
 	`,
 	styles: [`
 		.jumbotron {box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }
@@ -23,8 +29,8 @@ export class AppComponent implements OnInit {
 	weather = {};
 	setPosition(position){
 		this.service.getWeather(position.coords).subscribe(resWeather => {
-				console.log(resWeather);
-				this.weather = resWeather;
+				this.weather = resWeather.main;
+				console.log(this.weather);
 			});
 
 		this.geoLoc = position.coords;
