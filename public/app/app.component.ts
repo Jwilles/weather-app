@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { WeatherService } from './services/weather.service';
 
 @Component({
 	selector: 'my-app',
 	template: `
 		<div class="jumbotron">
-			<h1>Longitude:  {{geoLoc.longitude}} - Latitude: {{geoLoc.latitude}}</h1>
+			<h1>Longitude:  {{geoLoc.longitude}}  Latitude: {{geoLoc.latitude}} Temp: {{weather.temp}}</h1>
 		</div>
 	`,
 	styles: [`
@@ -13,8 +15,18 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
- 	geoLoc = {};  
+ 	
+	constructor(private service: WeatherService) {}
+	
+ 		
+	geoLoc = {};  
+	weather = {};
 	setPosition(position){
+		this.service.getWeather(position.coords).subscribe(resWeather => {
+				console.log(resWeather);
+				this.weather = resWeather;
+			});
+
 		this.geoLoc = position.coords;
       		console.log(position.coords);
       	}

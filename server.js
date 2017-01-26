@@ -12,8 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 //================== Routes ===========================
-
-
+require('./app/routes')(app);
 
 
 app.listen(port, () => {
