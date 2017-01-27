@@ -30,11 +30,9 @@ export class AppComponent implements OnInit {
 	setPosition(position){
 		this.service.getWeather(position.coords).subscribe(resWeather => {
 				this.weather = resWeather.main;
-				console.log(this.weather);
 			});
 
 		this.geoLoc = position.coords;
-      		console.log(position.coords);
       	}
 	ngOnInit(){
    		if(navigator.geolocation){
