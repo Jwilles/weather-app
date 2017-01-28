@@ -2,7 +2,7 @@ var request = require('request');
 
 var urlBase = 'http://api.openweathermap.org/data/2.5/weather?';
 var urlUnitID = '&units=metric&appid=';
-var urlApiID = process.env.KEY || 'ff062210ba6e38ea7285cc2aa1ede547';
+var urlApiID = process.env.KEY || 'DEV-KEY';
 
 
 
